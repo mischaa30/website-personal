@@ -50,7 +50,6 @@ if (isset($_GET['hapus'])) {
 }
 ?>
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>CRUD PHP dan MySQLi - db azizah_27</title>
@@ -172,11 +171,6 @@ if (isset($_GET['hapus'])) {
         while($d = mysqli_fetch_array($data)) {
         ?>
             <tr>
-                <td><?php echo $no++; ?></td>
-                <td><?php echo $d['nisn']; ?></td>
-                <td><?php echo $d['nomor']; ?></td>
-                <td><?php echo $d['nama']; ?></td>
-                <td><?php echo $d['addres']; ?></td>
                 <td>
                     <a class="edit" href="?edit=<?php echo $d['nisn']; ?>">EDIT</a>
                     <a class="hapus" href="?hapus=<?php echo $d['nisn']; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')">HAPUS</a>
