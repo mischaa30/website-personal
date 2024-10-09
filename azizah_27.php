@@ -119,12 +119,17 @@
         while($d = mysqli_fetch_array($data)) {
         ?>
             <tr>
-                <td><?php echo $no++; ?></td>
-                <td><?php echo $d['nisn']; ?></td>
-                <td><?php echo $d['nomor']; ?></td>
-                <td><?php echo $d['nama']; ?></td>
-                <td><?php echo $d['address']; ?></td>
-                <td>
+        <form method="post" action="">
+            <label>NISN</label>
+            <input type="text" name="nisn" required>
+            <label>Nomor</label>
+            <input type="text" name="nomor" required>
+            <label>Nama</label>
+            <input type="text" name="nama" required>
+            <label>Address</label>
+            <input type="text" name="address" required>
+            <input type="submit" name="tambah" value="TAMBAH">
+        </form>
                     <a class="edit" href="?edit=<?php echo $d['nisn']; ?>">EDIT</a>
                     <a class="hapus" href="?hapus=<?php echo $d['nisn']; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')">HAPUS</a>
                 </td>
