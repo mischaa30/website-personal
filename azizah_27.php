@@ -7,7 +7,7 @@ if (mysqli_connect_errno()){
     echo "Koneksi database gagal : " . mysqli_connect_error();
 }
 
-// Tambah data mahasiswa
+// Tambah data siswa
 if (isset($_POST['tambah'])) {
     $nisn = $_POST['nisn'];
     $nomor = $_POST['nomor'];
@@ -20,9 +20,10 @@ if (isset($_POST['tambah'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
+    exit; // Menambahkan exit setelah header
 }
 
-// Update data mahasiswa
+// Update data siswa
 if (isset($_POST['update'])) {
     $nisn = $_POST['nisn'];
     $nomor = $_POST['nomor'];
@@ -35,9 +36,10 @@ if (isset($_POST['update'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
+    exit; // Menambahkan exit setelah header
 }
 
-// Hapus data mahasiswa
+// Hapus data siswa
 if (isset($_GET['hapus'])) {
     $nisn = $_GET['hapus'];
     
@@ -47,11 +49,15 @@ if (isset($_GET['hapus'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
+    exit; // Menambahkan exit setelah header
 }
 ?>
 
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD PHP dan MySQLi - db azizah_27</title>
     <style>
         body {
@@ -171,6 +177,11 @@ if (isset($_GET['hapus'])) {
         while($d = mysqli_fetch_array($data)) {
         ?>
             <tr>
+                <td><?php echo $no++; ?></td>
+                <td><?php echo $d['nisn']; ?></td>
+                <td><?php echo $d['nomor']; ?></td>
+                <td><?php echo $d['nama']; ?></td>
+                <td><?php echo $d['addres']; ?></td>
                 <td>
                     <a class="edit" href="?edit=<?php echo $d['nisn']; ?>">EDIT</a>
                     <a class="hapus" href="?hapus=<?php echo $d['nisn']; ?>" onclick="return confirm('Yakin ingin menghapus data ini?')">HAPUS</a>
