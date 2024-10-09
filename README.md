@@ -1,6 +1,68 @@
+<?php
+// Koneksi ke database
+$host = "localhost"; // Ubah jika perlu
+$user = "root"; // Ganti dengan username database Anda
+$pass = ""; // Ganti dengan password database Anda
+$db_name = "azizah_27"; // Ganti dengan nama database Anda
+
+$koneksi = mysqli_connect($host, $user, $pass, $db_name);
+
+// Check connection
+if (mysqli_connect_errno()){
+    die("Koneksi database gagal: " . mysqli_connect_error());
+}
+
+// Tambah data siswa
+if (isset($_POST['tambah'])) {
+    $nisn = $_POST['nisn'];
+    $nomor = $_POST['nomor'];
+    $nama = $_POST['nama'];
+    $addres = $_POST['addres'];
+    
+    // Insert data ke database
+    $query = "INSERT INTO siswa (nisn, nomor, nama, addres) VALUES ('$nisn', '$nomor', '$nama', '$addres')";
+    mysqli_query($koneksi, $query);
+    
+    // Redirect ulang ke halaman utama
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Update data siswa
+if (isset($_POST['update'])) {
+    $nisn = $_POST['nisn'];
+    $nomor = $_POST['nomor'];
+    $nama = $_POST['nama'];
+    $addres = $_POST['addres'];
+    
+    // Update data di database
+    $query = "UPDATE siswa SET nomor='$nomor', nama='$nama', addres='$addres' WHERE nisn='$nisn'";
+    mysqli_query($koneksi, $query);
+    
+    // Redirect ulang ke halaman utama
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+
+// Hapus data siswa
+if (isset($_GET['hapus'])) {
+    $nisn = $_GET['hapus'];
+    
+    // Hapus data dari database
+    $query = "DELETE FROM siswa WHERE nisn='$nisn'";
+    mysqli_query($koneksi, $query);
+    
+    // Redirect ulang ke halaman utama
+    header("Location: ".$_SERVER['PHP_SELF']);
+    exit;
+}
+?>
+
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD PHP dan MySQLi - db azizah_27</title>
     <style>
         body {
