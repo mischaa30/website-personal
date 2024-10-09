@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>CRUD PHP dan MySQLi - db azizah_27</title>
