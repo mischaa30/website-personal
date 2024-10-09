@@ -1,10 +1,15 @@
 <?php
 // Koneksi ke database
-$koneksi = mysqli_connect("localhost", "root", "", "azizah_27");
+$host = "localhost"; // Ubah jika perlu
+$user = "root"; // Ganti dengan username database Anda
+$pass = ""; // Ganti dengan password database Anda
+$db_name = "azizah_27"; // Ganti dengan nama database Anda
+
+$koneksi = mysqli_connect($host, $user, $pass, $db_name);
 
 // Check connection
 if (mysqli_connect_errno()){
-    echo "Koneksi database gagal : " . mysqli_connect_error();
+    die("Koneksi database gagal: " . mysqli_connect_error());
 }
 
 // Tambah data siswa
@@ -20,7 +25,7 @@ if (isset($_POST['tambah'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
-    exit; // Menambahkan exit setelah header
+    exit;
 }
 
 // Update data siswa
@@ -36,7 +41,7 @@ if (isset($_POST['update'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
-    exit; // Menambahkan exit setelah header
+    exit;
 }
 
 // Hapus data siswa
@@ -49,7 +54,7 @@ if (isset($_GET['hapus'])) {
     
     // Redirect ulang ke halaman utama
     header("Location: ".$_SERVER['PHP_SELF']);
-    exit; // Menambahkan exit setelah header
+    exit;
 }
 ?>
 
